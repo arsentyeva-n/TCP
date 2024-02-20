@@ -1,7 +1,7 @@
 __author__ = "Arsentyeva N."
 
 from math import sqrt
-
+import numpy as np
 
 # Ввод значений
 def inputList(n: int):
@@ -65,6 +65,52 @@ def test320():
     assert _320(11,5) == 949740.000000
     print("Тест успешно пройден!")
 
-# sumTest()
-# test178a()
-#test320()
+
+# Создаем матрицу из нулей
+def createArray(n:int):
+    """Создание матрицы размера nхn+1 с нулями"""
+    random_array = np.zeros((n, n+1))
+    return random_array
+
+def _673(matrix: bytearray, new_row: list, new_column: list, p:int, q:int):
+    """Решение 673 задачи, вставка нового столбца и строки в исходную матрицу"""
+    new_matrix = np.insert(matrix, p, new_row, axis=0)
+    new_matrix = np.insert(new_matrix, q, new_column, axis=1)
+    return new_matrix
+
+
+def test673():
+    matrix = createArray(3)
+    new_row = np.array([[1, 2, 3, 4]])
+    new_column = np.array([[1, 2, 3, 4]])
+
+    # Проверка вставки в начало матрицы
+    p = 0
+    q = 0
+    test_matrix = [[1,1,2,3,4],
+                   [2,0,0,0,0],
+                   [3,0,0,0,0],
+                   [4,0,0,0,0]]
+    result_matrix = _673(matrix, new_row, new_column, p, q)
+    assert np.array_equal(test_matrix,result_matrix)
+
+    matrix = createArray(3)
+
+    # Проверка вставки в конец матрицы
+    p = 3
+    q = 4
+    test_matrix = [[0, 0, 0, 0, 1],
+                   [0, 0, 0, 0, 2],
+                   [0, 0, 0, 0, 3],
+                   [1, 2, 3, 4, 4]]
+    result_matrix = _673(matrix, new_row, new_column, p, q)
+    assert np.array_equal(test_matrix, result_matrix)
+
+
+    print("Тест успешно пройден!")
+
+
+test673()
+sumTest()
+test178a()
+test320()
