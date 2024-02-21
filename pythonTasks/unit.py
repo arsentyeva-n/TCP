@@ -60,22 +60,22 @@ def _320(n: int, m: int):
 
 def test320():
     """Тест задачи 320"""
-    assert _320(10,15) == 983455.000000
-    assert _320(10,10) == 586245.000000
-    assert _320(11,5) == 949740.000000
+    assert _320(2,2) == 9
+    assert _320(2,3) == 21
+    assert _320(3,3) == 156
     print("Тест успешно пройден!")
 
 
 # Создаем матрицу из нулей
 def createArray(n:int):
     """Создание матрицы размера nхn+1 с нулями"""
-    random_array = np.zeros((n, n+1))
-    return random_array
+    zeros_array = np.zeros((n, n+1))
+    return zeros_array
 
-def _673(matrix: bytearray, new_row: list, new_column: list, p:int, q:int):
+def _673(matrix: np.ndarray, new_row: list, new_column: list, p:int, q:int):
     """Решение 673 задачи, вставка нового столбца и строки в исходную матрицу"""
-    new_matrix = np.insert(matrix, p, new_row, axis=0)
-    new_matrix = np.insert(new_matrix, q, new_column, axis=1)
+    new_matrix = np.insert(matrix, p, new_row, axis=0)          # Вставка значений (new_row, new_column) по заданной о
+    new_matrix = np.insert(new_matrix, q, new_column, axis=1)   # си axis = 0 ( 0 строка; 1 стоблбец) перед заданными индексами (p,q)
     return new_matrix
 
 
@@ -110,7 +110,8 @@ def test673():
     print("Тест успешно пройден!")
 
 
-test673()
+
 sumTest()
 test178a()
 test320()
+test673()
